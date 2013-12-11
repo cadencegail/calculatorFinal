@@ -13,8 +13,7 @@
 
 void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a pointer to the button that was pressed
   NumButton *myButton = (NumButton *)w;
-  myButton->color(FL_RED);
-  std::cout << myButton->getValue()<< std::endl;
+  //push onto stack when you have one
 }
 
 int main(int argc, char *argv[]) {
