@@ -59,6 +59,10 @@ int main(int argc, char *argv[]) {
  
   NumButton *b9 = new NumButton(180,270,60,60,"&none",9);
   b9->callback(beepcb,0);
+
+  Fl_Box *b1 = new Fl_Box(230,110,60,60,"/");
+  box->labelsize(40);
+
   window->end();
   window->show(argc, argv);
   return Fl::run();
