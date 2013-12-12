@@ -2,17 +2,17 @@
 #include "stack.h"
 using namespace std;
 
-Stack::Stack(vector<char> myVec) {
+Stack::Stack(vector<int> myVec) {
   this->stackVec = myVec;
 }
 
 
-void push(char myChar) {
-  stackVec.push_back(myChar);
+void Stack::push(int myInt) {
+  stackVec.push_back(myInt);
 }
 
-char pop() {
-  char save = stackVec[-1];
+int Stack::pop() {
+  int save = stackVec[-1];
   stackVec.pop_back();
   return save;
 }
