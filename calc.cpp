@@ -21,14 +21,16 @@ void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a p
   int value = myButton->getValue();
   myStack->push(value);
 }
+  //push onto stack when you have one
 
 int main(int argc, char *argv[]) {
 
   Fl_Window *window = new Fl_Window(420,470);
   window->color(FL_DARK_GREEN);
-  Fl_Box *box = new Fl_Box(30,20,270,80,"Calculator!!!!!");
+  Fl_Box *box = new Fl_Box(30,20,270,80,"");
   box->labelfont(FL_HELVETICA_BOLD_ITALIC);
   box->labelsize(40);
+  box->color(FL_WHITE);
   
   NumButton *b0 = new NumButton(105,350,60,60,"&none",0);
   b0->callback(beepcb,0);
