@@ -12,6 +12,9 @@
 #include "numButton.h"
 #include "stack.h"
 #include "opButton.h"
+#include <stdio.h>     
+#include <math.h> 
+
 using namespace std;
 
 vector<float> myVec;
@@ -25,7 +28,74 @@ void divide(Fl_Widget *w, void *) {
   float result = int2 / int1;
   myStack->push(result);
   cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+}
 
+void multiply(Fl_Widget *w, void *) {
+  OpButton *myButton = (OpButton *)w;
+  string symbol = myButton->getSymbol();
+  float int1 = myStack->pop();
+  float int2 = myStack->pop();
+  float result = int2 * int1;
+  myStack->push(result);
+  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+}
+
+void add(Fl_Widget *w, void *) {
+  OpButton *myButton = (OpButton *)w;
+  string symbol = myButton->getSymbol();
+  float int1 = myStack->pop();
+  float int2 = myStack->pop();
+  float result = int2 + int1;
+  myStack->push(result);
+  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+}
+
+
+void subtract(Fl_Widget *w, void *) {
+  OpButton *myButton = (OpButton *)w;
+  string symbol = myButton->getSymbol();
+  float int1 = myStack->pop();
+  float int2 = myStack->pop();
+  float result = int2 - int1;
+  myStack->push(result);
+  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+}
+
+void to(Fl_Widget *w, void *) {
+  OpButton *myButton = (OpButton *)w;
+  string symbol = myButton->getSymbol();
+  float int1 = myStack->pop();
+  float int2 = myStack->pop();
+  float result = 1;
+  for (int r = 0; r < int1; r++) {
+    result = result*int2; 
+  }
+  myStack->push(result);
+  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+}
+
+void sqrt(Fl_Widget *w, void *) {
+  OpButton *myButton = (OpButton *)w;
+  string symbol = myButton->getSymbol();
+  float int1 = myStack->pop();
+ 
+  //double param, result;
+
+  float result = sqrt (int1);
+  //printf ("sqrt(%f) = %f\n", p, result );
+
+  //float result = sqrt(int1);
+  myStack->push(result);
+  cout << symbol << " " << int1 << " " << "=" << result << endl;
+}
+
+void changeSign(Fl_Widget *w, void *) {
+  OpButton *myButton = (OpButton *)w;
+  string symbol = myButton->getSymbol();
+  float int1 = myStack->pop();
+  float result =  -1 * int1;
+  myStack->push(result);
+  cout << symbol <<  int1 << " " << "=" << result << endl;
 }
 
 void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a pointer to the button that was pressed
@@ -38,7 +108,7 @@ void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a p
 
 int main(int argc, char *argv[]) {
 
-  Fl_Window *window = new Fl_Window(420,470);
+  Fl_Window *window = new Fl_Window(500,500);
   window->color(FL_DARK_GREEN);
   Fl_Box *box = new Fl_Box(30,20,270,80,"");
   box->labelfont(FL_HELVETICA_BOLD_ITALIC);
@@ -75,8 +145,26 @@ int main(int argc, char *argv[]) {
   NumButton *b9 = new NumButton(180,270,60,60,"9",9);
   b9->callback(beepcb,0);
 
-  OpButton *o1 = new OpButton(250,110,60,60,"/","/");
+  OpButton *o1 = new OpButton(260,110,60,60,"/","/");
   o1->callback(divide,0);
+
+  OpButton *o2= new OpButton(260,190,60,60,"*","*");
+  o2->callback(multiply,0);
+
+  OpButton *o3 = new OpButton(260,270,60,60,"+","+");
+  o3->callback(add,0);
+
+  OpButton *o4 = new OpButton(350,110,60,60,"-","-");
+  o4->callback(subtract,0);
+
+  OpButton *o5 = new OpButton(350,190,60,60,"^","^");
+  o5->callback(to,0);
+
+  OpButton *o6 = new OpButton(350,270,60,60,"sqrt","sqrt");
+  o6->callback(sqrt,0);
+
+  OpButton *o7 = new OpButton(450,110,60,60,"+/-","+/-");
+  o7->callback(changeSign,0);
 
   window->end();
   window->show(argc, argv);
