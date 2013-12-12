@@ -4,10 +4,10 @@
 class NumButton : public Fl_Button {
   
  public:
-  NumButton(int,int,int,int,char*,int);
+  NumButton(int,int,int,int,char*,float);
 
-  int getValue();
+  float getValue();
 
  private:
-  int value;
+  float value;
 };

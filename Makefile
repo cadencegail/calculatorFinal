@@ -7,7 +7,7 @@ DEBUG    = -g
 CXXFLAGS = $(shell fltk-config --cxxflags ) -std=c++11 -I.
 LDFLAGS  = $(shell fltk-config --ldflags )
 
-OBJS = numButton.o stack.o
+OBJS = numButton.o stack.o opButton.o
 
 .o: 		$@.cpp $@.h
 	$(CPP) $(CPPFLAGS) -c $@.cpp

@@ -4,12 +4,12 @@ using namespace std;
 class Stack {
   
  public:
-  Stack(vector<int>);
-  void push(int);
+  Stack(vector<float>);
+  void push(float);
  
-  int pop();
+  float pop();
 
  private:
-  vector<int> stackVec;
+  vector<float> stackVec;
 
 };

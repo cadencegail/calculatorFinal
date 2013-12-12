@@ -6,13 +6,13 @@
 #include <FL/Fl_Button.H>
 #include "numButton.h"
 
-NumButton::NumButton(int x, int y, int w, int h, char *label, int myValue) : Fl_Button(x,y,w,h,label) {
+NumButton::NumButton(int x, int y, int w, int h, char *label, float myValue) : Fl_Button(x,y,w,h,label) {
   this->value = myValue;
-  this->copy_label(std::to_string(value).c_str());
+  //this->copy_label(std::to_string(value).c_str());
 
 }
 
 
-int NumButton::getValue() {
+float NumButton::getValue() {
   return value;
 }
