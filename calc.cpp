@@ -10,10 +10,16 @@
 #include <FL/Fl_Button.H>
 #include <FL/fl_ask.H>
 #include "numButton.h"
+#include "stack.h"
+using namespace std;
+
+vector<int> myVec;
+Stack *myStack = new Stack(myVec);
 
 void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a pointer to the button that was pressed
   NumButton *myButton = (NumButton *)w;
-  //push onto stack when you have one
+  int value = myButton->getValue();
+  myStack->push(value);
 }
 
 int main(int argc, char *argv[]) {
@@ -24,6 +30,9 @@ int main(int argc, char *argv[]) {
   box->labelfont(FL_HELVETICA_BOLD_ITALIC);
   box->labelsize(40);
   
+  NumButton *b0 = new NumButton(105,350,60,60,"&none",0);
+  b0->callback(beepcb,0);
+
   NumButton *b1 = new NumButton(30,110,60,60,"&none",1);
   b1->callback(beepcb,0);
 
