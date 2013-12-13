@@ -120,7 +120,8 @@ void changeSign(Fl_Widget *w, void *) {
   float int1 = myStack->pop();
   float result =  -1 * int1;
   myStack->push(result);
-  myButton->changeDisplay(result);
+  //if statement that says, if there is something in window1 let int = thatNum, then window2->copy_label(thatNum), window1->copy_label(result)  
+    myButton->changeDisplay(result);
 }
 
 void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a pointer to the button that was pressed
@@ -143,12 +144,33 @@ int main(int argc, char *argv[]) {
 
   Fl_Window *window = new Fl_Window(550,500);
   window->color(FL_DARK_GREEN);
-  Fl_Box *window1 = new Fl_Box(30,20,350, 45, "aslfdaliesj");
-  window1->box(FL_FLAT_BOX);
+
+  //very bottom of windows
+  Fl_Box *window1 = new Fl_Box(30,70,350, 20, " ");
+  window1->box(FL_DOWN_BOX);
   window1->labelfont(FL_HELVETICA_BOLD_ITALIC);
-  window1->labelsize(40);
+  window1->labelsize(18);
   window1->color(FL_WHITE);
   
+  //next window up... 
+  Fl_Box *window2 = new Fl_Box(30,50,350, 20, " ");
+  window2->box(FL_DOWN_BOX);
+  window2->labelfont(FL_HELVETICA_BOLD_ITALIC);
+  window2->labelsize(18);
+  window2->color(FL_WHITE);
+
+  Fl_Box *window3 = new Fl_Box(30,30,350, 20, " ");
+  window3->box(FL_DOWN_BOX);
+  window3->labelfont(FL_HELVETICA_BOLD_ITALIC);
+  window3->labelsize(18);
+  window3->color(FL_WHITE);
+
+  Fl_Box *window4 = new Fl_Box(30,10,350, 20, " ");
+  window4->box(FL_DOWN_BOX);
+  window4->labelfont(FL_HELVETICA_BOLD_ITALIC);
+  window4->labelsize(18);
+  window4->color(FL_WHITE);
+
   NumButton *b0 = new NumButton(105,350,60,60,"0",0);
   b0->callback(beepcb,0);
 
