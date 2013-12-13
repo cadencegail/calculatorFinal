@@ -1,4 +1,6 @@
 #include <vector>
+#include <string>
+#include <sstream>
 #include "stack.h"
 using namespace std;
 
@@ -17,11 +19,11 @@ int Stack::getSize() {
 }
   
 bool Stack::isEmpty() {
-  if(stackVec.size() == 0) {
-    empty = true;
+  if(stackVec.size() > 0) {
+    empty = false;
   }
   else {
-    empty = false;
+    empty = true;
   }
   return empty;
 }
@@ -42,7 +44,6 @@ float Stack::getPushValue() {
     string floatstr = ss.str();
     numString = floatstr + numString;
   }
-  cout << numString << endl;
   stringstream sstrm(numString);
   float i;
   sstrm >> i;

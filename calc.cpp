@@ -25,6 +25,10 @@ Stack *numStack = new Stack(numVec);
 
 void divide(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
   float int2 = myStack->pop();
@@ -35,6 +39,10 @@ void divide(Fl_Widget *w, void *) {
 
 void multiply(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
   float int2 = myStack->pop();
@@ -45,6 +53,10 @@ void multiply(Fl_Widget *w, void *) {
 
 void add(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
   float int2 = myStack->pop();
@@ -56,6 +68,10 @@ void add(Fl_Widget *w, void *) {
 
 void subtract(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
   float int2 = myStack->pop();
@@ -66,6 +82,10 @@ void subtract(Fl_Widget *w, void *) {
 
 void to(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+  float f = numStack->getPushValue();
+  myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
   float int2 = myStack->pop();
@@ -79,6 +99,10 @@ void to(Fl_Widget *w, void *) {
 
 void sqrt(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
  
@@ -94,6 +118,10 @@ void sqrt(Fl_Widget *w, void *) {
 
 void changeSign(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
   float result =  -1 * int1;
@@ -110,8 +138,10 @@ void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a p
 
 void enter(Fl_Widget *w, void *) {
   EnterButton *myButton = (EnterButton *)w;
-  float f = numStack->getPushValue();
-  myStack->push(f);
+  if(!numStack->isEmpty()) {
+    float f = numStack->getPushValue();
+    myStack->push(f);
+  }
 }
 
 int main(int argc, char *argv[]) {

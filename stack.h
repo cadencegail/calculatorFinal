@@ -11,6 +11,7 @@ class Stack {
   bool isEmpty();
   int getSize();
   float pop();
+  float getPushValue();
 
  private:
   vector<float> stackVec;
