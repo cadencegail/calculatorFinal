@@ -12,13 +12,16 @@
 #include "numButton.h"
 #include "stack.h"
 #include "opButton.h"
+#include "enterButton.h"
 #include <stdio.h>     
 #include <math.h> 
 
 using namespace std;
 
 vector<float> myVec;
+vector<float> numVec;
 Stack *myStack = new Stack(myVec);
+Stack *numStack = new Stack(numVec);
 
 void divide(Fl_Widget *w, void *) {
   OpButton *myButton = (OpButton *)w;
@@ -101,13 +104,15 @@ void changeSign(Fl_Widget *w, void *) {
 void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a pointer to the button that was pressed
   NumButton *myButton = (NumButton *)w;
   float value = myButton->getValue();
-  myStack->push(value);
+  numStack->push(value);
   cout << value << endl;
 }
 
-//void enter(Fl_Widget *w, void *) {
-  
-
+void enter(Fl_Widget *w, void *) {
+  EnterButton *myButton = (EnterButton *)w;
+  float f = numStack->getPushValue();
+  myStack->push(f);
+}
 
 int main(int argc, char *argv[]) {
 
@@ -169,7 +174,8 @@ int main(int argc, char *argv[]) {
   OpButton *o7 = new OpButton(340,230,40,40,"+/-","+/-");
   o7->callback(changeSign,0);
 
-  //OpButton *enterMe = new OpButton(340,290,40,40,"enter",myStack);
+  EnterButton *e1 = new EnterButton(340,290,40,40,"enter",myStack,numStack);
+  e1->callback(enter,0);
   
 
   window->end();

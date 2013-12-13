@@ -7,8 +7,8 @@ Stack::Stack(vector<float> myVec) {
 }
 
 
-void Stack::push(float myInt) {
-  stackVec.push_back(myInt);
+void Stack::push(float myFloat) {
+  stackVec.push_back(myFloat);
 }
 
 int Stack::getSize() {
@@ -30,4 +30,21 @@ float Stack::pop() {
   float save = stackVec[stackVec.size()-1];
   stackVec.pop_back();
   return save;
+}
+
+float Stack::getPushValue() {
+  string numString;
+  while(stackVec.size()>0) {
+    float save = stackVec[stackVec.size()-1];
+    stackVec.pop_back();
+    stringstream ss;
+    ss << save;
+    string floatstr = ss.str();
+    numString = floatstr + numString;
+  }
+  cout << numString << endl;
+  stringstream sstrm(numString);
+  float i;
+  sstrm >> i;
+  return i;
 }

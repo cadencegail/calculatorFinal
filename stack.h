@@ -1,5 +1,7 @@
 #include <vector>
 using namespace std;
+#ifndef STACK
+#define STACK
 
 class Stack {
   
@@ -15,3 +17,4 @@ class Stack {
   bool empty;
 
 };
+#endif
