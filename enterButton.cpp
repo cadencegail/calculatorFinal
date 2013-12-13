@@ -9,9 +9,10 @@
 #include "enterButton.h"
 using namespace std;
 
-EnterButton::EnterButton(int x, int y, int w, int h, char* label, Stack* Stack1, Stack* Stack2) : Fl_Button(x,y,w,h,label) {
+EnterButton::EnterButton(int x, int y, int w, int h, char* label, Stack* Stack1, Stack* Stack2, Fl_Box* myWindow1) : Fl_Button(x,y,w,h,label) {
   this->mainStack = Stack1;
   this->valueStack = Stack2;
+  this->myWin = myWindow1;
 }
 
 float EnterButton::getPushValue() {
@@ -28,6 +29,10 @@ float EnterButton::getPushValue() {
   float i;
   sstrm >> i;////NEED TO CONVERT THIS TO A FLOAT CORRECTLY!!!
   return i;
+}
+
+void EnterButton::changeDisplay(float num) {
+  myWin->copy_label(std::to_string(num).c_str());
 }
 
 void EnterButton::pushToStack(float myFloat) {

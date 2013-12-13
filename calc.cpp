@@ -34,7 +34,7 @@ void divide(Fl_Widget *w, void *) {
   float int2 = myStack->pop();
   float result = int2 / int1;
   myStack->push(result);
-  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 void multiply(Fl_Widget *w, void *) {
@@ -48,7 +48,7 @@ void multiply(Fl_Widget *w, void *) {
   float int2 = myStack->pop();
   float result = int2 * int1;
   myStack->push(result);
-  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 void add(Fl_Widget *w, void *) {
@@ -62,7 +62,7 @@ void add(Fl_Widget *w, void *) {
   float int2 = myStack->pop();
   float result = int2 + int1;
   myStack->push(result);
-  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 
@@ -77,7 +77,7 @@ void subtract(Fl_Widget *w, void *) {
   float int2 = myStack->pop();
   float result = int2 - int1;
   myStack->push(result);
-  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 void to(Fl_Widget *w, void *) {
@@ -94,7 +94,7 @@ void to(Fl_Widget *w, void *) {
     result = result*int2; 
   }
   myStack->push(result);
-  cout << int2 << " " << symbol << " " << int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 void sqrt(Fl_Widget *w, void *) {
@@ -105,15 +105,9 @@ void sqrt(Fl_Widget *w, void *) {
   }
   string symbol = myButton->getSymbol();
   float int1 = myStack->pop();
- 
-  //double param, result;
-
   float result = sqrt (int1);
-  //printf ("sqrt(%f) = %f\n", p, result );
-
-  //float result = sqrt(int1);
   myStack->push(result);
-  cout << symbol << " " << int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 void changeSign(Fl_Widget *w, void *) {
@@ -126,7 +120,7 @@ void changeSign(Fl_Widget *w, void *) {
   float int1 = myStack->pop();
   float result =  -1 * int1;
   myStack->push(result);
-  cout << symbol <<  int1 << " " << "=" << result << endl;
+  myButton->changeDisplay(result);
 }
 
 void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a pointer to the button that was pressed
@@ -141,17 +135,19 @@ void enter(Fl_Widget *w, void *) {
   if(!numStack->isEmpty()) {
     float f = numStack->getPushValue();
     myStack->push(f);
-  }
+    myButton->changeDisplay(f);
+  }  
 }
 
 int main(int argc, char *argv[]) {
 
   Fl_Window *window = new Fl_Window(550,500);
   window->color(FL_DARK_GREEN);
-  Fl_Box *box = new Fl_Box(30,20,270,80,"");
-  box->labelfont(FL_HELVETICA_BOLD_ITALIC);
-  box->labelsize(40);
-  box->color(FL_WHITE);
+  Fl_Box *window1 = new Fl_Box(30,20,350, 45, "aslfdaliesj");
+  window1->box(FL_FLAT_BOX);
+  window1->labelfont(FL_HELVETICA_BOLD_ITALIC);
+  window1->labelsize(40);
+  window1->color(FL_WHITE);
   
   NumButton *b0 = new NumButton(105,350,60,60,"0",0);
   b0->callback(beepcb,0);
@@ -183,28 +179,28 @@ int main(int argc, char *argv[]) {
   NumButton *b9 = new NumButton(180,270,60,60,"9",9);
   b9->callback(beepcb,0);
 
-  OpButton *o1 = new OpButton(270,110,40,40,"/","/");
+  OpButton *o1 = new OpButton(270,110,40,40,"/","/", window1);
   o1->callback(divide,0);
 
-  OpButton *o2= new OpButton(270,170,40,40,"*","*");
+  OpButton *o2= new OpButton(270,170,40,40,"*","*", window1);
   o2->callback(multiply,0);
 
-  OpButton *o3 = new OpButton(270,230,40,40,"+","+");
+  OpButton *o3 = new OpButton(270,230,40,40,"+","+", window1);
   o3->callback(add,0);
 
-  OpButton *o4 = new OpButton(270,290,40,40,"-","-");
+  OpButton *o4 = new OpButton(270,290,40,40,"-","-", window1);
   o4->callback(subtract,0);
 
-  OpButton *o5 = new OpButton(340,110,40,40,"^","^");
+  OpButton *o5 = new OpButton(340,110,40,40,"^","^", window1);
   o5->callback(to,0);
 
-  OpButton *o6 = new OpButton(340,170,40,40,"sqrt","sqrt");
+  OpButton *o6 = new OpButton(340,170,40,40,"sqrt","sqrt",window1);
   o6->callback(sqrt,0);
 
-  OpButton *o7 = new OpButton(340,230,40,40,"+/-","+/-");
+  OpButton *o7 = new OpButton(340,230,40,40,"+/-","+/-",window1);
   o7->callback(changeSign,0);
 
-  EnterButton *e1 = new EnterButton(340,290,40,40,"enter",myStack,numStack);
+  EnterButton *e1 = new EnterButton(340,290,40,40,"enter", myStack, numStack, window1);
   e1->callback(enter,0);
   
 
