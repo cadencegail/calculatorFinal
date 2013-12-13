@@ -105,10 +105,13 @@ void beepcb(Fl_Widget *w, void *) { //Fl_Widget is a parameter that contains a p
   cout << value << endl;
 }
 
+//void enter(Fl_Widget *w, void *) {
+  
+
 
 int main(int argc, char *argv[]) {
 
-  Fl_Window *window = new Fl_Window(500,500);
+  Fl_Window *window = new Fl_Window(550,500);
   window->color(FL_DARK_GREEN);
   Fl_Box *box = new Fl_Box(30,20,270,80,"");
   box->labelfont(FL_HELVETICA_BOLD_ITALIC);
@@ -145,26 +148,29 @@ int main(int argc, char *argv[]) {
   NumButton *b9 = new NumButton(180,270,60,60,"9",9);
   b9->callback(beepcb,0);
 
-  OpButton *o1 = new OpButton(260,110,60,60,"/","/");
+  OpButton *o1 = new OpButton(270,110,40,40,"/","/");
   o1->callback(divide,0);
 
-  OpButton *o2= new OpButton(260,190,60,60,"*","*");
+  OpButton *o2= new OpButton(270,170,40,40,"*","*");
   o2->callback(multiply,0);
 
-  OpButton *o3 = new OpButton(260,270,60,60,"+","+");
+  OpButton *o3 = new OpButton(270,230,40,40,"+","+");
   o3->callback(add,0);
 
-  OpButton *o4 = new OpButton(350,110,60,60,"-","-");
+  OpButton *o4 = new OpButton(270,290,40,40,"-","-");
   o4->callback(subtract,0);
 
-  OpButton *o5 = new OpButton(350,190,60,60,"^","^");
+  OpButton *o5 = new OpButton(340,110,40,40,"^","^");
   o5->callback(to,0);
 
-  OpButton *o6 = new OpButton(350,270,60,60,"sqrt","sqrt");
+  OpButton *o6 = new OpButton(340,170,40,40,"sqrt","sqrt");
   o6->callback(sqrt,0);
 
-  OpButton *o7 = new OpButton(450,110,60,60,"+/-","+/-");
+  OpButton *o7 = new OpButton(340,230,40,40,"+/-","+/-");
   o7->callback(changeSign,0);
+
+  //OpButton *enterMe = new OpButton(340,290,40,40,"enter",myStack);
+  
 
   window->end();
   window->show(argc, argv);
