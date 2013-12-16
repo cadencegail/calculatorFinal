@@ -49,3 +49,8 @@ float Stack::getPushValue() {
   sstrm >> i;
   return i;
 }
+
+float Stack::getLastValue() {
+  float num = stackVec[stackVec.size()-1];
+  return num;
+}

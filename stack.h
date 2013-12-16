@@ -12,6 +12,7 @@ class Stack {
   int getSize();
   float pop();
   float getPushValue();
+  float getLastValue();
 
  private:
   vector<float> stackVec;
